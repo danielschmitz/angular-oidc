@@ -1,5 +1,7 @@
 # Angular Oidc
 
+![image](https://github.com/user-attachments/assets/3361edbc-943d-4d8c-8e39-78f84e05b963)
+
 Exemplo de app Angular + OIDC. As configurações de acesso ao servidor OIDC estão no environments.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.1.0.
