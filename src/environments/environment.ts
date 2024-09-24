@@ -7,5 +7,6 @@ export const environment = {
     responseType: 'code',
     scope: 'openid profile',
     requireHttps: true,
+    storage: localStorage
   },
 };

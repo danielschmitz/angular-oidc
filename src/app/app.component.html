@@ -1,14 +1,17 @@
 <div id="main">
   <h2>OIDC + angular-oauth2-oidc</h2>
   <div class="buttons">
-    <button (click)="login()">Login</button>
-    <button (click)="logout()">Logout</button>
+    <button (click)="login()" [disabled]="isAuthenticated()">Login</button>
+    <button (click)="logout()" [disabled]="!isAuthenticated()">Logout</button>
   </div>
   <div>
     Acces Token: <span>{{ getToken() }}</span>
   </div>
   <div>
     ID Token: <span>{{ getIdToken() }}</span>
+  </div>
+  <div>
+    Storage: <span>{{ getStorage() }}</span>
   </div>
   <div>
     user info: <span>{{ getUserInfo() | json }}</span>

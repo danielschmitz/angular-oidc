@@ -28,7 +28,9 @@ export class AppComponent implements OnInit {
   constructor(public oauthService: OAuthService) {}
 
   ngOnInit(): void {
+    console.log('onInit', this.authCodeFlowConfig)
     this.oauthService.configure(this.authCodeFlowConfig);
+    this.oauthService.setStorage(environment.auth.storage);
     this.oauthService.loadDiscoveryDocumentAndTryLogin();
   }
 
@@ -62,4 +64,8 @@ export class AppComponent implements OnInit {
   public isAuthenticated(): boolean {
     return this.oauthService.hasValidAccessToken();
   }
+
+  getStorage() {
+    return environment.auth.storage == localStorage ? 'localStorage' : 'sessionStorage';
+    }
 }
