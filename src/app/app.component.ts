@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { AuthConfig, OAuthService } from 'angular-oauth2-oidc';
 import { environment } from '../environments/environment.development';
@@ -13,6 +13,7 @@ import { JsonPipe } from '@angular/common';
 })
 export class AppComponent implements OnInit {
   title = 'angular-oidc';
+  state = signal<string>('');
 
   authCodeFlowConfig: AuthConfig = {
     issuer: environment.auth.issuer,
@@ -32,11 +33,20 @@ export class AppComponent implements OnInit {
     this.oauthService.configure(this.authCodeFlowConfig);
     this.oauthService.setStorage(environment.auth.storage);
     this.oauthService.loadDiscoveryDocumentAndTryLogin();
+    
+    setTimeout(() => {
+      if (this.oauthService.hasValidIdToken() && this.oauthService.hasValidAccessToken()) {
+        const stateValue = this.oauthService.state || '';
+        this.state.set(stateValue);
+        console.log('State recuperado:', stateValue);
+      }  
+    }, 1000);
+   
   }
 
   login(): void {
-    console.log('login');
-    this.oauthService.initCodeFlow();
+    console.log('login', this.state());
+    this.oauthService.initCodeFlow(this.state());
   }
 
   logout(): void {

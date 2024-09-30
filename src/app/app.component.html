@@ -5,6 +5,9 @@
     <button (click)="logout()" [disabled]="!isAuthenticated()">Logout</button>
   </div>
   <div>
+    State: <input type="text" name="state" id="state" [value]="state()" (input)="state.set($any($event.target).value)"> {{state()}}
+  </div>
+  <div>
     Acces Token: <span>{{ getToken() }}</span>
   </div>
   <div>

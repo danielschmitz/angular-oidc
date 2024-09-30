@@ -1,9 +1,9 @@
 export const environment = {
   production: false,
   auth: {
-    issuer: 'http://localhost:9000',
-    clientId: 'clientId',
-    clientSecret: 'secret',
+    issuer: 'https://auth.test.ufjf.br',
+    clientId: 'sigax',
+    clientSecret: '466f446f1f7c',
     responseType: 'code',
     scope: 'openid profile',
     requireHttps: false,
